@@ -1,6 +1,6 @@
 package application;
 
-import java.util.Date;
+import java.util.List;
 
 import model.dao.FabricaDao;
 import model.dao.VendedorDao;
@@ -15,11 +15,18 @@ public class Program {
 		
 		VendedorDao vendedorDao = FabricaDao.criaVendedorDao();
 		
-		System.out.println("===Test 1: vendedor");
+		//System.out.println("===Test 1: vendedor");
 		
-		Vendedor vendedor = vendedorDao.consultaId(1);
+		//Vendedor vendedor = vendedorDao.consultaId(1);
 		
-		System.out.println(vendedor);
+		//System.out.println(vendedor);
+		System.out.println("===Test 2: vendedor");
+		Departamento departamento = new Departamento(2, null);
+		List<Vendedor> list = vendedorDao.buscaPorDepartamento(departamento);
+		for(Vendedor obj : list) {
+			System.out.println(obj);
+		}
+		
 	}
 
 }

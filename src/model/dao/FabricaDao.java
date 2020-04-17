@@ -9,8 +9,8 @@ public class FabricaDao {
 		return new VendedorDaoImplJDBC(DB.getConnection());
 	}
 	
-	public static DepartamentoDao createDepartmentDao() {
-		return new DepartamentoDaoImplJDBC(DB.getConnection());
-	}
-}
+	//public static DepartamentoDao createDepartmentDao() {
+	//	return new DepartamentoDaoImplJDBC(DB.getConnection());
+//	}
+
 }

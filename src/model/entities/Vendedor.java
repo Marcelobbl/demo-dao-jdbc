@@ -77,6 +77,7 @@ public class Vendedor implements Serializable{
 		this.departamento = departamento;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
