@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
- 
-
 
 import db.DB;
 import db.DbException;
@@ -87,9 +85,39 @@ public class VendedorDaoImplJDBC implements VendedorDao {
 
 	@Override
 	public List<Vendedor> consultaTudo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"SELECT seller.*,department.Name as DepName " + "FROM seller INNER JOIN department "
+							+ "ON seller.DepartmentId = department.Id" + "ORDER BY Name");
+
+			rs = st.executeQuery();
+
+			List<Vendedor> list = new ArrayList<>();
+			Map<Integer, Departamento> map = new HashMap<>();
+
+			while (rs.next()) {
+
+				Departamento dep = map.get(rs.getInt("DepartmentId"));
+
+				if (dep == null) {
+					dep = instanciaDepartamento(rs);
+					map.put(rs.getInt("DepartmentId"), dep);
+				}
+				Vendedor obj = instanciaVendedor(rs, dep);
+				list.add(obj);
+			}
+			return list;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+}
 
 	@Override
 	public List<Vendedor> buscaPorDepartamento(Departamento departamento) {
@@ -118,8 +146,10 @@ public class VendedorDaoImplJDBC implements VendedorDao {
 				list.add(obj);
 			}
 			return list;
+
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
+
 		} finally {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
