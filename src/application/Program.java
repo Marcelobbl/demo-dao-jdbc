@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.FabricaDao;
@@ -12,7 +13,7 @@ public class Program {
 	public static void main(String[] args) {
 		
 		
-		
+		VendedorDao vendedorDao1 = FabricaDao.criaVendedorDao();
 		VendedorDao vendedorDao = FabricaDao.criaVendedorDao();
 		
 		//System.out.println("===Test 1: vendedor");
@@ -26,12 +27,17 @@ public class Program {
 		//for(Vendedor obj : list) {
 		//	System.out.println(obj);
 		//}
+		//System.out.println("===Test 3: vendedor");
+		//List<Vendedor> list = vendedorDao.consultaTudo();
+		//for(Vendedor obj : list) {
+		//	System.out.println(obj);
+		//}
 		System.out.println("===Test 3: vendedor");
-		List<Vendedor> list = vendedorDao.consultaTudo();
-		for(Vendedor obj : list) {
-			System.out.println(obj);
+		Vendedor novoVendedor= new Vendedor(null, "Greg", "greg@gmail.com.br", new Date(), 4000.0, null);
+		vendedorDao1.insert(novoVendedor);
+			System.out.println("Inserido! Novo id = " + novoVendedor.getId());
 		}
 		
 	}
 
-}
+
