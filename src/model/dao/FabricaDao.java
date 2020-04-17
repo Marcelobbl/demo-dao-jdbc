@@ -8,5 +8,9 @@ public class FabricaDao {
 	public static VendedorDao criaVendedorDao() {
 		return new VendedorDaoImplJDBC(DB.getConnection());
 	}
-
+	
+	public static DepartamentoDao createDepartmentDao() {
+		return new DepartamentoDaoImplJDBC(DB.getConnection());
+	}
+}
 }
