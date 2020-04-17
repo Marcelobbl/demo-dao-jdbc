@@ -32,12 +32,18 @@ public class Program {
 		//for(Vendedor obj : list) {
 		//	System.out.println(obj);
 		//}
+		//System.out.println("===Test 3: vendedor");
+		//Vendedor novoVendedor= new Vendedor(null, "Greg", "greg@gmail.com.br", new Date(), 4000.0, null);
+		//vendedorDao1.insert(novoVendedor);
+		//	System.out.println("Inserido! Novo id = " + novoVendedor.getId());
+		//}
 		System.out.println("===Test 3: vendedor");
-		Vendedor novoVendedor= new Vendedor(null, "Greg", "greg@gmail.com.br", new Date(), 4000.0, null);
-		vendedorDao1.insert(novoVendedor);
-			System.out.println("Inserido! Novo id = " + novoVendedor.getId());
-		}
-		
+		Vendedor vendedor = vendedorDao1.consultaId(1);
+		vendedor.setNome("Martha Waine");
+		vendedorDao.update(vendedor);
+		System.out.println("Update completo! ");
+
+	}
 	}
 
 
