@@ -11,26 +11,26 @@ import java.util.Properties;
 
 public class DB {
 
-	private static Connection conn = null;
+	private static Connection conn1 = null;
 	
 	public static Connection getConnection() {
-		if (conn == null) {
+		if (conn1 == null) {
 			try {
 				Properties props = loadProperties();
 				String url = props.getProperty("dburl");
-				conn = DriverManager.getConnection(url, props);
+				conn1 = DriverManager.getConnection(url, props);
 			}
 			catch (SQLException e) {
 				throw new DbException(e.getMessage());
 			}
 		}
-		return conn;
+		return conn1;
 	}
 	
 	public static void closeConnection() {
-		if (conn != null) {
+		if (conn1 != null) {
 			try {
-				conn.close();
+				conn1.close();
 			} catch (SQLException e) {
 				throw new DbException(e.getMessage());
 			}
